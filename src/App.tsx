@@ -8,6 +8,7 @@ import CopyButton from './components/CopyButton'
 import { Textarea } from './components/ui/textarea'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogTitle, AlertDialogTrigger } from './components/ui/alert-dialog'
 import github from './assets/github.svg'
+import { useTranslation } from 'react-i18next'
 
 function App() {
   const [keyPair, setKeyPair] = useState<{
@@ -30,26 +31,43 @@ function App() {
     })
   }
 
+  const { t, i18n } = useTranslation()
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get('lang');
+    if (lang === "zh" || lang === "en") {
+      i18n.changeLanguage(lang)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <>
       <div className='flex flex-col items-center min-h-screen'>
         <div className='flex flex-1 flex-col w-full space-y-8 max-w-md px-4 mt-16'>
-          <h1 className='font-bold text-2xl'>Generate EOS Keypair</h1>
+          <h1 className='font-bold text-2xl'>{t("title")}</h1>
           <Alert variant="destructive">
             <AlertDescription>
-              We recommend that you generate your public and private keys offline. After generating the keys, please be sure to record and store your private key safely. Do not disclose private key information to anyone!
-            </AlertDescription>
+              <h1>{t("instruction.title")}</h1>
+              <ul>
+                <li>{t("instruction.step1")}</li>
+                <li>{t("instruction.step2")}</li>
+                <li>{t("instruction.step3")}</li>
+                <li>{t("instruction.step4")}</li>
+              </ul>
+              </AlertDescription>
           </Alert>
           <div className='flex flex-col space-y-4'>
             <div className='flex flex-col space-y-2 items-start'>
-              <Label htmlFor='publicKey'>Public Key</Label>
+              <Label htmlFor='publicKey'>{t("public_key")}</Label>
               <div className='flex items-center w-full relative'>
                 <Textarea rows={2} id='publicKey' value={keyPair?.publicKey || ""} readOnly className='pr-10 resize-none' />
                 <CopyButton content={keyPair?.publicKey || ""} variant="outline" size="icon" className='absolute top-0 right-0 border-l-0 border-b-0 rounded-none rounded-tr-md rounded-bl-md' />
               </div>
             </div>
             <div className='flex flex-col space-y-2 items-start'>
-              <Label htmlFor='privateKey'>Private Key</Label>
+              <Label htmlFor='privateKey'>{t("private_key")}</Label>
               <div className='flex items-center w-full relative'>
                 <Textarea rows={2} id='privateKey' value={keyPair?.privateKey || ""} readOnly className='pr-10 resize-none' />
                 <CopyButton content={keyPair?.privateKey || ""} variant="outline" size="icon" className='absolute top-0 right-0 border-l-0 border-b-0 rounded-none rounded-tr-md rounded-bl-md' />
@@ -57,16 +75,16 @@ function App() {
             </div>
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button className='w-full'>Generate</Button>
+                <Button className='w-full'>{t("generate")}</Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogTitle>{t("regenerate.alert.title")}</AlertDialogTitle>
                 <AlertDialogDescription>
-                  Generate a new key pair will overwrite the current key pair. Are you sure you want to proceed?
+                  {t("regenerate.alert.content")}
                 </AlertDialogDescription>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={() => generateKeyPair()}>Generate</AlertDialogAction>
+                  <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
+                  <AlertDialogAction onClick={() => generateKeyPair()}>{t("generate")}</AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>

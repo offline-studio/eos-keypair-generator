@@ -1,0 +1,14 @@
+{
+  "title": "Generate EOS Keypair",
+  "instruction.title": "Instructions:",
+  "instruction.step1": "1. Save the Private Key in a safe environment, such as writing it down on paper. A screenshot is NOT safe.",
+  "instruction.step2": "2. Double-check the Private Key you have saved—it is impossible to restore if lost.",
+  "instruction.step3": "3. Copy the Public Key and return to the previous page.",
+  "instruction.step4": "4. Paste and send it to complete the process of claiming your account.",
+  "public_key": "Public Key",
+  "private_key": "Private Key",
+  "generate": "Generate",
+  "cancel": "Cancel",
+  "regenerate.alert.title": "Are you absolutely sure?",
+  "regenerate.alert.content": "Generate a new key pair will overwrite the current key pair. Are you sure you want to proceed?"
+}

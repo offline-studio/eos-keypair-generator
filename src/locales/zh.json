@@ -1,0 +1,14 @@
+{
+  "title": "生成EOS密钥对",
+  "instruction.title": "操作说明：",
+  "instruction.step1": "1. 将私钥保存在安全的环境中，比如写在纸上。注意，截图并不安全。",
+  "instruction.step2": "2. 仔细复核已保存的私钥——注意，一旦私钥丢失，你的账户将彻底丢失，无法恢复。",
+  "instruction.step3": "3. 复制公钥并返回上一页。",
+  "instruction.step4":"4. 粘贴并发送，完成账户认领流程。",
+  "public_key": "公钥",
+  "private_key": "私钥",
+  "generate": "生成",
+  "cancel": "取消",
+  "regenerate.alert.title": "确定重新生成？",
+  "regenerate.alert.content": "重新生成将会覆盖当前的私钥，确定要继续吗？"
+}
