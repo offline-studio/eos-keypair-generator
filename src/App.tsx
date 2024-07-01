@@ -9,6 +9,7 @@ import { Textarea } from './components/ui/textarea'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogTitle, AlertDialogTrigger } from './components/ui/alert-dialog'
 import github from './assets/github.svg'
 import { useTranslation } from 'react-i18next'
+import copy from 'copy-to-clipboard'
 
 function App() {
   const [keyPair, setKeyPair] = useState<{
@@ -29,6 +30,14 @@ function App() {
       publicKey: publicKey.toLegacyString("EOS"),
       privateKey: privateKey.toWif()
     })
+  }
+
+  const sendKeyPair = () => {
+    if (!keyPair) return;
+
+    copy(keyPair.publicKey);
+    window.Telegram.WebApp.sendData(keyPair.publicKey)
+    window.Telegram.WebApp.close()
   }
 
   const { t, i18n } = useTranslation()
@@ -73,18 +82,19 @@ function App() {
                 <CopyButton content={keyPair?.privateKey || ""} variant="outline" size="icon" className='absolute top-0 right-0 border-l-0 border-b-0 rounded-none rounded-tr-md rounded-bl-md' />
               </div>
             </div>
+            <Button variant="outline" className='w-full' onClick={() => generateKeyPair()}>{t("regenerate")}</Button>
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button className='w-full'>{t("generate")}</Button>
+                <Button className='w-full'>{t("use_keypair")}</Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
-                <AlertDialogTitle>{t("regenerate.alert.title")}</AlertDialogTitle>
+                <AlertDialogTitle>{t("use.alert.title")}</AlertDialogTitle>
                 <AlertDialogDescription>
-                  {t("regenerate.alert.content")}
+                  {t("use.alert.content")}
                 </AlertDialogDescription>
                 <AlertDialogFooter>
                   <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
-                  <AlertDialogAction onClick={() => generateKeyPair()}>{t("generate")}</AlertDialogAction>
+                  <AlertDialogAction onClick={() => sendKeyPair()}>{t("confirm")}</AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>

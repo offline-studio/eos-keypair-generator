@@ -8,7 +8,12 @@
   "public_key": "Public Key",
   "private_key": "Private Key",
   "generate": "Generate",
+  "regenerate": "Regenerate",
+  "use_keypair": "Use this key pair",
   "cancel": "Cancel",
+  "confirm": "Confirm",
+  "use.alert.title": "Are you sure you want to use this key pair?",
+  "use.alert.content": "Before using it, make sure you have saved the Private Key. Clicking Confirm will automatically copy the Public Key to the clipboard.",
   "regenerate.alert.title": "Are you absolutely sure?",
   "regenerate.alert.content": "Generate a new key pair will overwrite the current key pair. Are you sure you want to proceed?"
 }

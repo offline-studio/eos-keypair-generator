@@ -8,7 +8,12 @@
   "public_key": "公钥",
   "private_key": "私钥",
   "generate": "生成",
+  "regenerate": "重新生成",
+  "use_keypair": "使用此密钥对",
   "cancel": "取消",
+  "confirm": "确认",
+  "use.alert.title": "确定使用此密钥对？",
+  "use.alert.content": "使用前请确保你已保存了私钥，点击确认将自动复制公钥到剪贴板。",
   "regenerate.alert.title": "确定重新生成？",
   "regenerate.alert.content": "重新生成将会覆盖当前的私钥，确定要继续吗？"
 }
